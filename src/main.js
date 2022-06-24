@@ -5,11 +5,10 @@ import cors from "cors";
 import helmet from "helmet";
 import { environments } from "./config.js";
 import { Webhooks, createNodeMiddleware } from "@octokit/webhooks";
-import fs from "fs/promises";
-import fg from "fast-glob";
 import Handlebars from "handlebars";
 import EventSource from "eventsource";
 import { emitter } from './emitter.js'
+import { parseEvents } from './events.js'
 
 Handlebars.registerHelper("json", (context) =>
   JSON.stringify(context, null, 2)
@@ -45,24 +44,6 @@ app.listen(env.port, () =>
   console.log(`[express] listening on [http://127.0.0.1:${env.port}]`)
 );
 
-async function parseEvents() {
-  const files = await fg("src/events/**/*.md");
-  return Promise.all(
-    files.map(async (file) => {
-      const content = await fs.readFile(file, "utf-8");
-      const name = file
-        .replace("src/events/", "")
-        .replace("/", ".")
-        .replace(".md", "");
-
-      return {
-        name,
-        file,
-        render: Handlebars.compile(content),
-      };
-    })
-  );
-}
 
 // debug
 if (env.debugEventSource) {

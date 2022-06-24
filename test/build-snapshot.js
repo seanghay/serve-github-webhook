@@ -2,8 +2,10 @@ import fse from 'fs-extra'
 import _ from 'lodash'
 import Handlebars from 'handlebars';
 import { parseEvents } from '../src/events.js'
+import { createRequire } from 'module'
 
-const samples = await fse.readJson('./node_modules/@octokit/webhooks-examples/api.github.com/index.json');
+const require = createRequire(import.meta.resolve)
+const samples = await fse.readJson(require.resolve('@octokit/webhooks-examples'));
 
 const associates = Object.fromEntries(
   samples.map(

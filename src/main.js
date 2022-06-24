@@ -35,6 +35,8 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan(env.logFormat));
+
+// "/api/github/webhooks"
 app.use(createNodeMiddleware(webhooks));
 
 app.use((_, res) => res.status(404).json({ msg: "not found" }));

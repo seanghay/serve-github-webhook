@@ -9,7 +9,6 @@ export const emitter = new Emittery();
 const telegramBot = new TelegramBot(env.telegram.botToken, { polling: false });
 
 emitter.on("message", async ({ message, payload }) => {
-  console.log(message);
   await telegramBot.sendMessage(
     env.telegram.chatId,
     telegramifyMarkdown(message),

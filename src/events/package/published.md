@@ -1,1 +1,1 @@
-A new package has published
+📦 A new package has published

@@ -41,3 +41,12 @@ services:
     env_file:
       - .env
 ```
+
+## API Endpoint
+
+
+```toml
+[api]
+url = "http://localhost:8080/api/github/webhooks"
+method = "POST"
+```

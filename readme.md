@@ -1,5 +1,15 @@
 # Serve GitHub Webhooks
 
+An HTTP server for handling GitHub Webhooks event to Telegram Chat/Group/Channel.
+
+
+## Features
+
+- Using Markdown & Handlebars template engine for building messages.
+- File-based GitHub events (`src/events/issues/closed.md` will be `issues.closed`)
+
+
+### Deployment
 
 Environment variables
 
